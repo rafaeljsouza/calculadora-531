@@ -1,6 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './Calculator531.css';
 
+// Hook personalizado para detectar o modo escuro
+const useDarkMode = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Verifica o modo inicial
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(mediaQuery.matches);
+
+    // Adiciona um listener para mudanças no modo
+    const handler = () => setIsDarkMode(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handler);
+
+    // Limpa o listener quando o componente é desmontado
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  return isDarkMode;
+};
+
 const Calculator531 = () => {
   const [maxes, setMaxes] = useState({
     squat: '',
@@ -18,6 +38,7 @@ const Calculator531 = () => {
   
   const [activeTab, setActiveTab] = useState('squat');
   const [unit, setUnit] = useState('kg');
+  const isDarkMode = useDarkMode(); // Usa o hook personalizado
   
   // Calcular os TMs (90% do 1RM)
   useEffect(() => {
@@ -103,7 +124,7 @@ const Calculator531 = () => {
   const workoutTable = generateWorkoutTable(activeTab);
   
   return (
-    <div className="calculator-container">
+    <div className={`calculator-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <header className="header">
         <h1>Calculadora 5/3/1 de Powerlifting</h1>
         <p>Baseada no método de Jim Wendler</p>
@@ -127,13 +148,13 @@ const Calculator531 = () => {
           <div className="max-inputs">
             {['squat', 'bench', 'deadlift', 'press'].map(lift => (
               <div key={lift} className="max-input-item">
-                <label className="capitalize">{lift}:</label>
+                <label className="capitalize">1RM {lift}:</label>
                 <div className="input-with-unit">
                   <input
                     type="number"
                     value={maxes[lift]}
                     onChange={(e) => handleMaxChange(e, lift)}
-                    placeholder={`1RM ${lift}`}
+                    placeholder={`Insira valor`}
                   />
                   <span>{unit}</span>
                 </div>
@@ -157,7 +178,9 @@ const Calculator531 = () => {
                 className={`tab ${activeTab === lift ? 'active' : ''}`}
                 onClick={() => setActiveTab(lift)}
               >
-                {lift}
+                {lift === 'squat' ? 'Squat' : 
+                 lift === 'bench' ? 'Bench' : 
+                 lift === 'deadlift' ? 'Deadlift' : 'Press'}
               </button>
             ))}
           </div>
@@ -196,7 +219,9 @@ const Calculator531 = () => {
           ) : (
             <div className="alert">
               <p>
-                Insira seu 1RM para {activeTab} para visualizar a tabela de treino.
+                Insira seu 1RM para {activeTab === 'squat' ? 'squat' : 
+                               activeTab === 'bench' ? 'bench' : 
+                               activeTab === 'deadlift' ? 'deadlift' : 'press'} para visualizar a tabela de treino.
               </p>
             </div>
           )}

@@ -3,77 +3,147 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f5f5f5;
     padding: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Estilos para modo claro (padrão) */
+  .light-mode {
+    background-color: #f5f5f5;
     color: #333;
   }
   
-  /* Suporte para modo escuro */
-  @media (prefers-color-scheme: dark) {
-    .calculator-container {
-      background-color: #121212;
-      color: #f5f5f5;
-    }
-    
-    .calculator-card {
-      background-color: #1e1e1e;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .header h1,
-    .table-section h2,
-    .input-section h2,
-    .notes-section h3,
-    .set-number,
-    .weight {
-      color: #f5f5f5;
-    }
-    
-    .header p,
-    .training-max,
-    .reps,
-    .notes-section li,
-    .footer p {
-      color: #aaa;
-    }
-    
-    input, select {
-      background-color: #2d2d2d;
-      color: #f5f5f5;
-      border-color: #444;
-    }
-    
-    th, td {
-      border-color: #444;
-    }
-    
-    th {
-      background-color: #2d2d2d;
-    }
-    
-    .tab {
-      color: #aaa;
-    }
-    
-    .tab.active {
-      color: #61dafb;
-      border-bottom-color: #61dafb;
-    }
-    
-    .notes-section {
-      background-color: #2d2d2d;
-    }
-    
-    .alert {
-      background-color: #332b1a;
-    }
-    
-    .alert p {
-      color: #e9b949;
-    }
+  .light-mode .calculator-card {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
+  .light-mode .header h1,
+  .light-mode .input-section h2,
+  .light-mode .table-section h2,
+  .light-mode .set-number,
+  .light-mode .weight {
+    color: #333;
+  }
+  
+  .light-mode .header p,
+  .light-mode .footer p {
+    color: #666;
+  }
+  
+  .light-mode .training-max,
+  .light-mode .reps,
+  .light-mode .notes-section li {
+    color: #666;
+  }
+  
+  .light-mode input,
+  .light-mode select {
+    background-color: white;
+    color: #333;
+    border-color: #ddd;
+  }
+  
+  .light-mode th,
+  .light-mode td {
+    border-color: #ddd;
+  }
+  
+  .light-mode th {
+    background-color: #f9fafb;
+  }
+  
+  .light-mode .tab {
+    color: #666;
+  }
+  
+  .light-mode .tab.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+  }
+  
+  .light-mode .notes-section {
+    background-color: #f9fafb;
+  }
+  
+  .light-mode .alert {
+    background-color: #fff9e6;
+  }
+  
+  .light-mode .alert p {
+    color: #b45309;
+  }
+  
+  /* Estilos para modo escuro */
+  .dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .dark-mode .calculator-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dark-mode .header h1,
+  .dark-mode .input-section h2,
+  .dark-mode .table-section h2,
+  .dark-mode .notes-section h3,
+  .dark-mode .set-number,
+  .dark-mode .weight {
+    color: #ffffff;
+  }
+  
+  .dark-mode .header p,
+  .dark-mode .footer p {
+    color: #cccccc;
+  }
+  
+  .dark-mode .training-max,
+  .dark-mode .reps,
+  .dark-mode .notes-section li {
+    color: #cccccc;
+  }
+  
+  .dark-mode input,
+  .dark-mode select {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #555555;
+  }
+  
+  .dark-mode th,
+  .dark-mode td {
+    border-color: #555555;
+    color: #ffffff;
+  }
+  
+  .dark-mode th {
+    background-color: #2a2a2a;
+  }
+  
+  .dark-mode .tab {
+    color: #cccccc;
+  }
+  
+  .dark-mode .tab.active {
+    color: #61dafb;
+    border-bottom-color: #61dafb;
+  }
+  
+  .dark-mode .notes-section {
+    background-color: #2a2a2a;
+  }
+  
+  .dark-mode .alert {
+    background-color: #432c18;
+  }
+  
+  .dark-mode .alert p {
+    color: #ffa940;
+  }
+  
+  /* Estilos compartilhados */
   .header {
     text-align: center;
     margin-bottom: 30px;
@@ -82,12 +152,10 @@
   .header h1 {
     font-size: 24px; /* Reduzido para caber melhor em telas pequenas */
     font-weight: bold;
-    color: #333;
     margin-bottom: 8px;
   }
   
   .header p {
-    color: #666;
     margin-top: 0;
   }
   
@@ -95,9 +163,7 @@
     max-width: 900px;
     margin: 0 auto;
     width: 100%;
-    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 16px; /* Reduzido para caber melhor em telas pequenas */
   }
   
@@ -124,7 +190,8 @@
   
   .unit-selector select {
     padding: 8px;
-    border: 1px solid #ddd;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 4px;
     width: 70px; /* Largura fixa para melhor visualização */
   }
@@ -178,7 +245,8 @@
   .input-with-unit input {
     flex: 1;
     padding: 8px;
-    border: 1px solid #ddd;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 4px;
   }
   
@@ -188,7 +256,6 @@
   
   .training-max {
     font-size: 14px;
-    color: #666;
     margin-top: 4px;
   }
   
@@ -206,8 +273,16 @@
   .tabs {
     display: flex;
     flex-wrap: wrap; /* Permite que as abas quebrem para a próxima linha em telas pequenas */
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid;
     margin-bottom: 24px;
+  }
+  
+  .light-mode .tabs {
+    border-bottom-color: #ddd;
+  }
+  
+  .dark-mode .tabs {
+    border-bottom-color: #444;
   }
   
   .tab {
@@ -216,13 +291,11 @@
     border: none;
     cursor: pointer;
     text-transform: capitalize;
-    color: #666;
     white-space: nowrap; /* Evita quebra de texto dentro da aba */
   }
   
   .tab.active {
-    border-bottom: 2px solid #3b82f6;
-    color: #3b82f6;
+    border-bottom: 2px solid;
     font-weight: 500;
   }
   
@@ -241,11 +314,10 @@
   th, td {
     padding: 10px 12px; /* Ligeiramente reduzido para caber melhor em telas pequenas */
     text-align: left;
-    border: 1px solid #ddd;
+    border: 1px solid;
   }
   
   th {
-    background-color: #f9fafb;
     white-space: nowrap; /* Mantém os cabeçalhos em uma linha */
   }
   
@@ -264,31 +336,26 @@
   
   .reps {
     font-size: 14px;
-    color: #666;
   }
   
   .alert {
-    background-color: #fff9e6;
     padding: 16px;
     border-radius: 4px;
   }
   
   .alert p {
-    color: #b45309;
     margin: 0;
   }
   
   /* Seção de notas */
   .notes-section {
     margin-top: 24px;
-    background-color: #f9fafb;
     padding: 16px;
     border-radius: 4px;
   }
   
   .notes-section h3 {
     font-weight: 500;
-    color: #333;
     margin-bottom: 8px;
     font-size: 16px;
   }
@@ -302,7 +369,6 @@
   .notes-section li {
     margin-bottom: 4px;
     font-size: 14px;
-    color: #666;
   }
   
   /* Footer */
@@ -313,5 +379,4 @@
   
   .footer p {
     font-size: 14px;
-    color: #666;
   }
